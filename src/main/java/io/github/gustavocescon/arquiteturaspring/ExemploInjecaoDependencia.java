@@ -10,12 +10,11 @@ import java.sql.Connection;
 
 public class ExemploInjecaoDependencia {
     public static void main(String[] args) throws Exception {
-        DataSource dataSource = new DriverManagerDataSource();
 
-        dataSource.url("url");
-        dataSource.setUsername("user");
-        dataSource.setPassword("password");
-
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setUrl("jdbc:mysql://localhost:3306/seubanco");
+        dataSource.setUsername("seu_usuario");
+        dataSource.setPassword("sua_senha");
         Connection connection = dataSource.getConnection();
 
 
@@ -26,7 +25,5 @@ public class ExemploInjecaoDependencia {
         TodoValidator todoValidator = new TodoValidator(repository);
         MailSender mainSender = new MailSender();
         TodoService todoService = new TodoService(repository, todoValidator, mainSender);
-
-
     }
 }
